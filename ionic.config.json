@@ -1,0 +1,7 @@
+{
+  "name": "financialStock",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
