@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end" (click)="close()">
+      <ion-button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Quntidade</ion-label>
+      <ion-input name="quantities" type="number" [(ngModel)]="quantities"></ion-input>
+    </ion-item>
+    <ion-button expand="full" color="success" (click)="finish()">Concluir</ion-button>
+  </ion-list>
+</ion-content>

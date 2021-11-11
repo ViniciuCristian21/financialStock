@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Produtos</ion-title>
+    <ion-buttons slot="end">
+      <!-- Open search -->
+      <ion-button>
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-card>
+    <div>
+      <ion-buttons>
+        <ion-button [routerLink]="['/products-form/edit', '15d15a1']">
+          <ion-icon name="pencil-outline" color="warning"></ion-icon>
+        </ion-button>
+        <ion-button (click)="openQuantities()">
+          <ion-icon name="add-outline" color="success"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+    <ion-card-header>
+      <ion-title class="t-product">Coca-Cola</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div>Refrigerante</div>
+      <div>120</div>
+      <div>5,50</div>
+      <div>Contém</div>
+      <div>10/09/2021</div>
+    </ion-card-content>
+  </ion-card>
+</ion-list>
+
+ <!-- Adicionar novo usuario -->
+ <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button [routerLink]="['/products-form/new']" color="primary">
+    <ion-icon name="add-circle-outline">Adicionar</ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>

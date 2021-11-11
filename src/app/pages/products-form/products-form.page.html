@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Novo Produto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input type="text" name="name" #name="ngModel" [(ngModel)]="products.name" required></ion-input>
+    </ion-item>
+    <!-- validation -->
+    <ion-item *ngIf="name.invalid && (name.dirty || name.touched)" color="danger">
+      <div *ngIf="name?.errors.required">
+        Texto é obrigatorio.
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tipo</ion-label>
+      <ion-input type="text" value="" name="type" [(ngModel)]="products.type"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Quantidade</ion-label>
+      <ion-input type="number" value="" name="amount" #amount="ngModel" [(ngModel)]="products.quantitie" required></ion-input>
+    </ion-item>
+    <!-- validation -->
+    <ion-item *ngIf="amount.invalid && (amount.dirty || amount.touched)" color="danger">
+      <div *ngIf="amount?.errors.required">
+        Texto é obrigatorio.
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Valor Comprado</ion-label>
+      <ion-input type="number" value="" name="acquiredValue" [(ngModel)]="products.base_value"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Valor Vendido</ion-label>
+      <ion-input type="number" value="" name="soldValue" [(ngModel)]="products.unitary_value"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descrição</ion-label>
+      <ion-input type="text" value="" name="description" [(ngModel)]="products.description"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-button expand="full" (click)="saveProducts()">Salvar</ion-button>
+</ion-footer>
