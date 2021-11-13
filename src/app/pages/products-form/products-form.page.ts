@@ -25,7 +25,7 @@ export class ProductsFormPage implements OnInit {
       this.toastGlobalService.presentToast("warning", "O produto foi armazenado com sucesso");
       this.router.navigate(['/products'])
     } catch (error) {
-      this.toastGlobalService.presentToast("Danger", `O produto não foi armazenado ${error}`);
+      this.toastGlobalService.presentToast("Danger", `O produto não foi armazenado ${error}`);''
       console.log(error)
     }
   }

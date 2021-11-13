@@ -7,7 +7,8 @@ import { db } from 'src/environments/environment';
 })
 export class ProductsFbDbService {
   userCollectionRef = collection(db, "products");
-  constructor() { }
+  products: any = [];
+  constructor() {}
 
 
   async insertData(products: Products){
@@ -24,5 +25,27 @@ export class ProductsFbDbService {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  async getAll(){
+    try {
+      const snap = await getDocs(this.userCollectionRef);
+      this.products = [];
+      snap.forEach((data) => {
+        this.products.push({
+          id: data.id,
+          name: data.data().name,
+          type: data.data().type,
+          quantitie: data.data().quantitie,
+          base_value: data.data().base_value,
+          unitary_value: data.data().unitary_value,
+          description: data.data().description
+        })
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    return this.products;
+
   }
 }
