@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ModalProductsAddService } from './../../services/modal-products-add.service';
 import { DataSalesService } from './../../services/data-sales.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,17 +11,21 @@ import { Component, OnInit } from '@angular/core';
 export class QtdProductsComponent implements OnInit {
   quantities: number;
   constructor(private dataSalesService: DataSalesService,
-              private modalProductsAdd: ModalProductsAddService) { }
+              private modalProductsAdd: ModalProductsAddService,
+              private router: Router) { }
 
   ngOnInit() {}
   close(){
     this.modalProductsAdd.dismiss();
   }
 
-  finish(){
+  async finish(){
     this.dataSalesService.quantities = this.quantities;
 
     this.dataSalesService.finish();
+    this.modalProductsAdd.dismiss();
+    await this.router.navigate(['/sales']);
+
   }
 
 }

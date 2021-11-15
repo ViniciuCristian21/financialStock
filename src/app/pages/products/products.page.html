@@ -11,6 +11,11 @@
 </ion-header>
 
 <ion-content>
+  <!-- Refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
 <ion-list *ngFor="let p of products">
   <ion-card>
     <div>
@@ -18,7 +23,7 @@
         <ion-button [routerLink]="['/products-form/edit', p.id]">
           <ion-icon name="pencil-outline" color="warning"></ion-icon>
         </ion-button>
-        <ion-button (click)="openQuantities()">
+        <ion-button (click)="openQuantities(p.id)">
           <ion-icon name="add-outline" color="success"></ion-icon>
         </ion-button>
       </ion-buttons>

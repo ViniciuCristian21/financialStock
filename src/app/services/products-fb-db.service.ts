@@ -48,4 +48,28 @@ export class ProductsFbDbService {
     return this.products;
 
   }
+
+  async getById(pId: string) {
+    try {
+      const snap = await getDocs(this.userCollectionRef);
+      this.products = [];
+      snap.forEach((data) => {
+        if (data.id == pId) {
+          this.products.push({
+            id: data.id,
+            name: data.data().name,
+            type: data.data().type,
+            quantitie: data.data().quantitie,
+            base_value: data.data().base_value,
+            unitary_value: data.data().unitary_value,
+            description: data.data().description
+          })
+          return
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    return this.products;
+  }
 }
