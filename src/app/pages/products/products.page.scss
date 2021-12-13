@@ -1,6 +1,24 @@
+  * {
+    overflow: hidden;
+  }
 ion-card-content {
   font-weight: bold;
 }
 .t-product{
   padding: 0;
+  font-weight: bold;
+}
+ion-content {
+  --offset-bottom: auto!important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+ion-card {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
 }

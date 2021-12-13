@@ -16,6 +16,6 @@ export class DataSalesService {
       quantities: this.quantities
     })
     // console.log(this.arrSales[this.arrSales.length - 1])
-    console.log(this.arrSales)
+    // console.log(this.arrSales)
   }
 }

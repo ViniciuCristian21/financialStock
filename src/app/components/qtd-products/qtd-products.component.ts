@@ -20,6 +20,11 @@ export class QtdProductsComponent implements OnInit {
   }
 
   async finish(){
+    const hasQuantities = this.quantities == null ? true : false;
+
+    if (hasQuantities == true) {
+      return
+    }
     this.dataSalesService.quantities = this.quantities;
 
     this.dataSalesService.finish();

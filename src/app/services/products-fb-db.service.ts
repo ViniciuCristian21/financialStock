@@ -10,17 +10,27 @@ export class ProductsFbDbService {
   products: any = [];
   constructor() {}
 
+  getDate() {
+    const date = new Date();
+
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return day + '/' + month + '/' + year;
+  }
 
   async insertData(products: Products){
-    const { name, type, quantitie, base_value, unitary_value, description } = products;
+    const { name, type, base_value, unitary_value, description } = products;
+    const date = this.getDate();
     try {
       await addDoc(this.userCollectionRef, {
         name: name,
         type: type,
-        quantitie: quantitie,
         base_value: base_value,
         unitary_value: unitary_value,
-        description: description
+        description: description,
+        date: date
       });
     } catch (error) {
       console.log(error)
@@ -39,7 +49,8 @@ export class ProductsFbDbService {
           quantitie: data.data().quantitie,
           base_value: data.data().base_value,
           unitary_value: data.data().unitary_value,
-          description: data.data().description
+          description: data.data().description,
+          date: data.data().date
         })
       })
     } catch (error) {
@@ -59,10 +70,10 @@ export class ProductsFbDbService {
             id: data.id,
             name: data.data().name,
             type: data.data().type,
-            quantitie: data.data().quantitie,
             base_value: data.data().base_value,
             unitary_value: data.data().unitary_value,
-            description: data.data().description
+            description: data.data().description,
+            date: data.data().date
           })
           return
         }
@@ -71,5 +82,23 @@ export class ProductsFbDbService {
       console.log(error)
     }
     return this.products;
+  }
+
+  async updateData(product: Products, id: string) {
+    const pDoc = doc(this.userCollectionRef, id)
+    const { name, type, base_value, unitary_value, description } = product;
+    const newProduct = {
+      name: name,
+      type: type,
+      base_value: base_value,
+      unitary_value: unitary_value,
+      description: description
+    }
+    await updateDoc(pDoc, newProduct)
+  }
+  async delDoc(id: string) {
+    const pDoc = doc(this.userCollectionRef, id);
+
+    await deleteDoc(pDoc);
   }
 }

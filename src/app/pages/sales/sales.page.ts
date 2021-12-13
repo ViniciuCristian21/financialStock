@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { SaleFbDbService } from './../../services/sale-fb-db.service';
 import { ProductsFbDbService } from './../../services/products-fb-db.service';
 import { DataSalesService } from './../../services/data-sales.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +16,9 @@ export class SalesPage implements OnInit {
   totalValue: number = 0;
   currentValue: number = 0;
   constructor(private dataSalesService: DataSalesService,
-              private productsFBDBService: ProductsFbDbService) { }
+              private productsFBDBService: ProductsFbDbService,
+              private saleFBDB: SaleFbDbService,
+              private router: Router) { }
 
   ngOnInit() {
     this.isData();
@@ -40,16 +44,35 @@ export class SalesPage implements OnInit {
     this.dataAll = await this.productsFBDBService.getById(id);
     this.dataAll.forEach(data => {
       this.dataView.push({
-        id: this.pID,
+        id: data.id,
+        pId: this.pID,
         name: data.name,
         type: data.type,
         unitary_value: data.unitary_value,
         quantitieSale: quantities,
+        date: data.date
       })
     });
     this.currentValue = this.dataView[this.dataView.length - 1].quantitieSale * this.dataView[this.dataView.length - 1].unitary_value;
-    this.totalValue = this.currentValue + this.dataView[this.dataView.length - 1].unitary_value;
+    this.totalValue = this.totalValue + this.currentValue;
     console.log(this.dataView)
-    console.log(this.totalValue)
+    // console.log(this.totalValue)
+  }
+
+  async saveSales() {
+    const dataFinally = [];
+    this.dataView.forEach(doc => {
+      dataFinally.push({
+        id: doc.id,
+        name: doc.name,
+        type: doc.type,
+        unitary_value: doc.unitary_value,
+        quantitie_sale: doc.quantitieSale,
+        date: doc.date
+      })
+    });
+    console.log(dataFinally)
+    await this.saleFBDB.insertData(dataFinally);
+    this.router.navigate(['/dashboard/'])
   }
 }
