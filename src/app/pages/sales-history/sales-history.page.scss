@@ -7,3 +7,19 @@ ion-item {
     margin: 0;
   }
 }
+ion-card-content {
+  width: 100%;
+  padding: 0;
+  margin-top: 0.5rem;
+  border-top: solid 1px;
+  // border-bottom: solid 1px;
+}
+ion-content {
+  // overwrite inline styles
+  --offset-bottom: auto!important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -77,6 +77,9 @@ export class ProductsFormPage implements OnInit {
   }
 
   async deleteDoc() {
+    if (!this.pId) {
+      return
+    }
     try {
       await this.productsFBDBService.delDoc(this.pId);
       this.router.navigate(['/products'])

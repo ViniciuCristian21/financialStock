@@ -1,3 +1,4 @@
+import { SaleFbDbService } from './../../services/sale-fb-db.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SalesHistoryPage implements OnInit {
 
-  constructor() { }
-
+  constructor(private saleFBDB: SaleFbDbService) { }
+  sales: any = [];
+  newSales: any = [];
   ngOnInit() {
+    this.getAll();
+  }
+
+  async getAll() {
+    try {
+      this.sales = await this.saleFBDB.getAllData();
+    } catch (err) {
+      console.log(err)
+    }
+    this.formatData();
+  }
+
+  formatData() {
+    this.sales.forEach(data => {
+      const total = data.quantitie_sale * data.unitary_value;
+      this.newSales.push({
+        id: data.id,
+        name: data.name,
+        quantitie_sale: data.quantitie_sale,
+        total: total,
+        date: data.date
+      })
+    });
+
+    console.log(this.newSales)
   }
 
 }

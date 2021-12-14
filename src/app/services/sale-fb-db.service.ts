@@ -6,7 +6,10 @@ import { db } from 'src/environments/environment';
 })
 export class SaleFbDbService {
   userCollectionRef = collection(db, "sales");
+  sales: any = [];
   constructor() { }
+
+
   async insertData(sale: any,){
 
      await sale.forEach(doc => {
@@ -24,7 +27,24 @@ export class SaleFbDbService {
       }
     });
 
+  }
 
+  async getAllData() {
+    const snap = await getDocs(this.userCollectionRef);
+
+    this.sales = [];
+    snap.forEach(doc => {
+      this.sales.push({
+        id: doc.data().id,
+        date: doc.data().date,
+        name: doc.data().name,
+        quantitie_sale: doc.data().quantitie_sale,
+        type: doc.data().type,
+        unitary_value: doc.data().unitary_value
+      })
+    });
+
+    return this.sales;
 
   }
 }
