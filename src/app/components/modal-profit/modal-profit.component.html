@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons (click)="modalBack()" slot="end">
+      <ion-button>
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="today">
+      <ion-label>Diario</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="weekly">
+      <ion-label>Semanal</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="monthly">
+      <ion-label>Mensal</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list>
+    <ion-item *ngIf="isOption === 'today'">
+      <ion-label>
+        diario
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="isOption === 'weekly'">
+      <ion-label>
+        Semanal
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="isOption === 'monthly'">
+      <ion-label>
+        Mensal
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

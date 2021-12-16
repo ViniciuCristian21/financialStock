@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'users-form/new',
     loadChildren: () => import('./pages/users-form/users-form.module').then( m => m.UsersFormPageModule)
   },
+  {
+    path: 'accounting',
+    loadChildren: () => import('./pages/accounting/accounting.module').then( m => m.AccountingPageModule)
+  },
 ];
 
 @NgModule({

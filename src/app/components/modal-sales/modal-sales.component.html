@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons (click)="modalBack()" slot="end">
+      <ion-button>
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="diario">
+      <ion-label>Diario</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="semanal">
+      <ion-label>Semanal</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="mensal">
+      <ion-label>Mensal</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-content>
+
