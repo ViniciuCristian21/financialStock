@@ -22,19 +22,28 @@
   </ion-segment>
   <ion-list>
     <ion-item *ngIf="isOption === 'today'">
-      <ion-label>
-        diario
-      </ion-label>
+      <div class="text-header">
+        Lucros do Dia
+      </div>
+      <div class="text-body">
+        R$ 200,00
+      </div>
     </ion-item>
     <ion-item *ngIf="isOption === 'weekly'">
-      <ion-label>
-        Semanal
-      </ion-label>
+      <div class="text-header">
+        Lucros da Semana
+      </div>
+      <div class="text-body">
+        R$ 400,00
+      </div>
     </ion-item>
     <ion-item *ngIf="isOption === 'monthly'">
-      <ion-label>
-        Mensal
-      </ion-label>
+      <div class="text-header">
+        Lucros do Mês
+      </div>
+      <div class="text-body">
+        R$ 800,00
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>

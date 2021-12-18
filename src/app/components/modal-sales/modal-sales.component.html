@@ -10,15 +10,41 @@
 
 <ion-content>
   <ion-segment (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="diario">
+    <ion-segment-button value="today">
       <ion-label>Diario</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="semanal">
+    <ion-segment-button value="weekly">
       <ion-label>Semanal</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="mensal">
+    <ion-segment-button value="monthly">
       <ion-label>Mensal</ion-label>
     </ion-segment-button>
   </ion-segment>
+  <ion-list>
+    <ion-item *ngIf="isOption === 'today'">
+      <div class="text-header">
+        Vendas Diaria
+      </div>
+      <div class="text-body">
+        {{qtdSaleDay}}
+      </div>
+    </ion-item>
+    <ion-item *ngIf="isOption === 'weekly'">
+      <div class="text-header">
+        Vendas da Semana
+      </div>
+      <div class="text-body">
+        400
+      </div>
+    </ion-item>
+    <ion-item *ngIf="isOption === 'monthly'">
+      <div class="text-header">
+        Vendas do Mês
+      </div>
+      <div class="text-body">
+        {{qtdSaleMonth}}
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>
 

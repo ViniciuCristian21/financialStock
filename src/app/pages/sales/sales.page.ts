@@ -50,7 +50,8 @@ export class SalesPage implements OnInit {
         type: data.type,
         unitary_value: data.unitary_value,
         quantitieSale: quantities,
-        date: data.date
+        date: data.date,
+        base_value: data.base_value
       })
     });
     this.currentValue = this.dataView[this.dataView.length - 1].quantitieSale * this.dataView[this.dataView.length - 1].unitary_value;
@@ -68,7 +69,7 @@ export class SalesPage implements OnInit {
         type: doc.type,
         unitary_value: doc.unitary_value,
         quantitie_sale: doc.quantitieSale,
-        date: doc.date
+        base_value: doc.base_value
       })
     });
     console.log(dataFinally)

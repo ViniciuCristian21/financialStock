@@ -32,7 +32,7 @@ export class SalesHistoryPage implements OnInit {
         name: data.name,
         quantitie_sale: data.quantitie_sale,
         total: total,
-        date: data.date
+        format_date: data.format_date
       })
     });
 
