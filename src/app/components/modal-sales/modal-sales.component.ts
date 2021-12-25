@@ -66,11 +66,12 @@ export class ModalSalesComponent implements OnInit {
 
     this.qtdSaleDay = result.length;
   }
+
   filterSalesMonth() {
     const newDate = new Date()
-    const day = newDate.getMonth()
+    const month = newDate.getMonth()
 
-    const result = this.defaultSale.filter(doc => doc.no_format_date.toDate().getMonth() === day);
+    const result = this.defaultSale.filter(doc => doc.no_format_date.toDate().getMonth() === month);
 
     this.qtdSaleMonth = result.length;
 

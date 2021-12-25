@@ -1,3 +1,4 @@
+import { SaleFbDbService } from './../../services/sale-fb-db.service';
 import { ModalProfitService } from './../../services/modal-profit.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalProfitComponent implements OnInit {
   isOption: string = "";
-  constructor(private modalProfitService: ModalProfitService) { }
+  defaultProfit: any[] = [];
+  totalDay: number = 0;
+  totalMonth: number = 0;
+  constructor(private modalProfitService: ModalProfitService,
+              private saleDBFBService: SaleFbDbService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllProfit();
+  }
 
   segmentChanged(ev: any) {
     this.isOption = ev.target.value;
@@ -25,13 +32,13 @@ export class ModalProfitComponent implements OnInit {
 
   Option = {
     today() {
-      console.log("diario");
+      // console.log("diario");
     },
     weekly() {
-      console.log("semanal");
+      // console.log("semanal");
     },
     monthly() {
-      console.log("mensal");
+      // console.log("mensal");
     }
   }
 
@@ -41,6 +48,39 @@ export class ModalProfitComponent implements OnInit {
     if (move) {
       move();
     }
+  }
+
+  async getAllProfit() {
+    this.defaultProfit = await this.saleDBFBService.getAllData();
+
+    this.filterProfitDay();
+    this.filterProfitMonth();
+
+  }
+
+  filterProfitDay() {
+    const newDate = new Date()
+    const day = newDate.getDate()
+
+
+    const result = this.defaultProfit.filter(doc => doc.no_format_date.toDate().getDate() === day);
+
+    result.forEach(data => {
+      let total = data.unitary_value * data.quantitie_sale;
+      this.totalDay = this.totalDay + total;
+    })
+  }
+
+  filterProfitMonth() {
+    const newDate = new Date()
+    const month = newDate.getMonth()
+
+    const result = this.defaultProfit.filter(doc => doc.no_format_date.toDate().getMonth() === month);
+
+    result.forEach(data => {
+      let total = data.unitary_value * data.quantitie_sale;
+      this.totalMonth = this.totalMonth + total;
+    })
   }
 
 }

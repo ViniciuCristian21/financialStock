@@ -26,7 +26,7 @@
         Lucros do Dia
       </div>
       <div class="text-body">
-        R$ 200,00
+        R$ {{totalDay}}
       </div>
     </ion-item>
     <ion-item *ngIf="isOption === 'weekly'">
@@ -34,7 +34,7 @@
         Lucros da Semana
       </div>
       <div class="text-body">
-        R$ 400,00
+        Indeterminado
       </div>
     </ion-item>
     <ion-item *ngIf="isOption === 'monthly'">
@@ -42,7 +42,7 @@
         Lucros do Mês
       </div>
       <div class="text-body">
-        R$ 800,00
+        R$ {{totalMonth}}
       </div>
     </ion-item>
   </ion-list>
