@@ -12,6 +12,10 @@ export class ModalProfitComponent implements OnInit {
   defaultProfit: any[] = [];
   totalDay: number = 0;
   totalMonth: number = 0;
+  totalUnitaryM: number = 0;
+  totalBaseValueM: number = 0;
+  totalUnitaryD: number = 0;
+  totalBaseValueD: number = 0;
   constructor(private modalProfitService: ModalProfitService,
               private saleDBFBService: SaleFbDbService) { }
 
@@ -67,8 +71,17 @@ export class ModalProfitComponent implements OnInit {
 
     result.forEach(data => {
       let total = data.unitary_value * data.quantitie_sale;
-      this.totalDay = this.totalDay + total;
+      this.totalUnitaryD = this.totalUnitaryD + total;
     })
+
+    result.forEach(data => {
+      let total = data.base_value * data.quantitie_sale;
+
+      this.totalBaseValueD = this.totalBaseValueD + total;
+    })
+    const total = this.totalUnitaryD - this.totalBaseValueD;
+    this.totalDay = Math.round(total);
+
   }
 
   filterProfitMonth() {
@@ -79,8 +92,20 @@ export class ModalProfitComponent implements OnInit {
 
     result.forEach(data => {
       let total = data.unitary_value * data.quantitie_sale;
-      this.totalMonth = this.totalMonth + total;
+      this.totalUnitaryM = this.totalUnitaryM + total;
     })
+
+    result.forEach(data => {
+      let total = data.base_value * data.quantitie_sale;
+      this.totalBaseValueM = this.totalBaseValueM + total;
+    })
+
+    // console.log(this.totalBaseValue)
+    const total  = this.totalUnitaryM - this.totalBaseValueM;
+
+    this.totalMonth = Math.round(total);
   }
+
+
 
 }
