@@ -56,7 +56,7 @@ export class SalesPage implements OnInit {
     });
     this.currentValue = this.dataView[this.dataView.length - 1].quantitieSale * this.dataView[this.dataView.length - 1].unitary_value;
     this.totalValue = this.totalValue + this.currentValue;
-    console.log(this.dataView)
+    // console.log(this.dataView)
     // console.log(this.totalValue)
   }
 
@@ -72,7 +72,7 @@ export class SalesPage implements OnInit {
         base_value: doc.base_value
       })
     });
-    console.log(dataFinally)
+    // console.log(dataFinally)
     await this.saleFBDB.insertData(dataFinally);
     this.router.navigate(['/dashboard/'])
   }

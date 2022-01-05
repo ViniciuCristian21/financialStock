@@ -1,12 +1,21 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Produtos</ion-title>
-    <ion-buttons slot="end">
+    <ion-title *ngIf="isSearch === false">Produtos</ion-title>
+    <ion-buttons slot="end" *ngIf="isSearch === false" (click)="openSearch()">
       <!-- Open search -->
       <ion-button>
         <ion-icon slot="icon-only" name="search-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-buttons slot="end" *ngIf="isSearch === true" (click)="closeSearch()">
+      <!-- Close search -->
+      <ion-button>
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="search" *ngIf="isSearch === true">
+      <ion-searchbar name="search" [(ngModel)]="search" (ionChange)="executeFilter()"></ion-searchbar>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -17,26 +26,52 @@
   </ion-refresher>
   <!-- Adicionar novo Produto -->
   <ion-button expand="full" [routerLink]="['/products-form/new']">Adicionar Novo</ion-button>
-  <ion-list *ngFor="let p of products">
-    <ion-card>
-      <div>
-        <ion-buttons>
-          <ion-button [routerLink]="['/products-form/edit', p.id]">
-            <ion-icon name="pencil-outline" color="warning"></ion-icon>
-          </ion-button>
-          <ion-button (click)="openQuantities(p.id)">
-            <ion-icon name="add-outline" color="success"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-      <ion-card-header>
-        <ion-title class="t-product">{{p.name}}</ion-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div>Tipo: {{p.type}}</div>
-        <div>Valor: {{p.unitary_value}}</div>
-        <div>data: {{ p.date }}</div>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
+  <div *ngIf="isSearch === false">
+    <ion-list *ngFor="let p of products">
+      <ion-card>
+        <div>
+          <ion-buttons>
+            <ion-button [routerLink]="['/products-form/edit', p.id]">
+              <ion-icon name="pencil-outline" color="warning"></ion-icon>
+            </ion-button>
+            <ion-button (click)="openQuantities(p.id)">
+              <ion-icon name="add-outline" color="success"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+        <ion-card-header>
+          <ion-title class="t-product">{{p.name}}</ion-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div>Tipo: {{p.type}}</div>
+          <div>Valor: {{p.unitary_value}}</div>
+          <div>data: {{ p.date }}</div>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+  <div *ngIf="isSearch === true">
+    <ion-list *ngFor="let p of filterProducts">
+      <ion-card>
+        <div>
+          <ion-buttons>
+            <ion-button [routerLink]="['/products-form/edit', p.id]">
+              <ion-icon name="pencil-outline" color="warning"></ion-icon>
+            </ion-button>
+            <ion-button (click)="openQuantities(p.id)">
+              <ion-icon name="add-outline" color="success"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+        <ion-card-header>
+          <ion-title class="t-product">{{p.name}}</ion-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div>Tipo: {{p.type}}</div>
+          <div>Valor: {{p.unitary_value}}</div>
+          <div>data: {{ p.date }}</div>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
 </ion-content>

@@ -36,7 +36,7 @@ export class SalesHistoryPage implements OnInit {
       })
     });
 
-    console.log(this.newSales)
+    // console.log(this.newSales)
   }
 
 }

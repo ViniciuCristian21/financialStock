@@ -8,7 +8,7 @@ import { ModalSalesService } from 'src/app/services/modal-sales.service';
   styleUrls: ['./modal-sales.component.scss'],
 })
 export class ModalSalesComponent implements OnInit {
-  isOption: string = "";
+  isOption: string = "today";
   defaultSale: any = [];
   date: Date;
   qtdSaleDay: number;

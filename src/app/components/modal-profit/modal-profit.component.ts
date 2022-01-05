@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-profit.component.scss'],
 })
 export class ModalProfitComponent implements OnInit {
-  isOption: string = "";
+  isOption: string = 'today';
   defaultProfit: any[] = [];
   totalDay: number = 0;
   totalMonth: number = 0;
