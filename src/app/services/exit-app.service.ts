@@ -1,16 +1,24 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExitAppService {
 
-  constructor(private platform: Platform) { }
+  constructor(private platform: Platform,
+              private router: Router,
+              private navController: NavController) { }
 
   execute() {
     this.platform.backButton.subscribeWithPriority(10, () => {
-      navigator['app'].exitApp();
+      const currentUrl = this.router.url;
+      if (currentUrl === "/home") {
+        navigator['app'].exitApp();
+      } else {
+        this.navController.back();
+      }
     });
   }
 }
