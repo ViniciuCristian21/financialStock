@@ -14,7 +14,7 @@ export class ExitAppService {
   execute() {
     this.platform.backButton.subscribeWithPriority(10, () => {
       const currentUrl = this.router.url;
-      if (currentUrl === "/home") {
+      if (currentUrl === "/dashboard") {
         navigator['app'].exitApp();
       } else {
         this.navController.back();
