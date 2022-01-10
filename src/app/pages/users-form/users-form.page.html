@@ -1,9 +1,29 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item lines="full">
+    <ion-label position="stacked"> Nome </ion-label>
+    <ion-input type="text" name="name" [(ngModel)]="users.name"></ion-input>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="stacked">Cargo</ion-label>
+    <ion-select placeholder="Selecione aqui" [(ngModel)]="users.cargo">
+      <ion-select-option value="admin">Administrador</ion-select-option>
+      <ion-select-option value="caixa">Usuario (Padrão)</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input type="email" name="email" [(ngModel)]="users.email"></ion-input>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="stacked">Senha</ion-label>
+    <ion-input type="password" name="password" [(ngModel)]="users.password"></ion-input>
+  </ion-item>
 
+  <ion-button expand="block" color="success" (click)="onSubmit()">Block Button</ion-button>
 </ion-content>

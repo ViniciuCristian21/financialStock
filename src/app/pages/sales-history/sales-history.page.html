@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+  <ion-progress-bar type="indeterminate" [hidden]="isData"></ion-progress-bar>
   <ion-card>
     <ion-card-content *ngFor="let s of newSales">
       <ion-row>

@@ -1,6 +1,7 @@
 import { SaleFbDbService } from './../../services/sale-fb-db.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-sales-history',
   templateUrl: './sales-history.page.html',
@@ -11,6 +12,7 @@ export class SalesHistoryPage implements OnInit {
   constructor(private saleFBDB: SaleFbDbService) { }
   sales: any = [];
   newSales: any = [];
+  isData: boolean = false;
   ngOnInit() {
     this.getAll();
   }
@@ -35,7 +37,7 @@ export class SalesHistoryPage implements OnInit {
         format_date: data.format_date
       })
     });
-
+    this.isData = true;
     // console.log(this.newSales)
   }
 
