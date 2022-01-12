@@ -16,7 +16,8 @@ export class ExitAppService {
   execute() {
     this.platform.backButton.subscribeWithPriority(10, () => {
       const currentUrl = this.router.url;
-      if (currentUrl === "/dashboard") {
+      if (currentUrl === "/dashboard" ||
+          currentUrl === "/login") {
         this.presentAlertConfirm()
       } else {
         this.navController.back();

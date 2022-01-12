@@ -29,13 +29,13 @@
   <div *ngIf="isSearch === false">
     <ion-list *ngFor="let p of products">
       <ion-card>
-        <div>
+        <div class="buttons">
           <ion-buttons>
-            <ion-button [routerLink]="['/products-form/edit', p.id]">
-              <ion-icon name="pencil-outline" color="warning"></ion-icon>
+            <ion-button [routerLink]="['/products-form/edit', p.id]" class="button-edit">
+              <ion-icon name="pencil-outline"></ion-icon>
             </ion-button>
-            <ion-button (click)="openQuantities(p.id)">
-              <ion-icon name="add-outline" color="success"></ion-icon>
+            <ion-button (click)="openQuantities(p.id)" class="button-add">
+              <ion-icon name="add-outline"></ion-icon>
             </ion-button>
           </ion-buttons>
         </div>
@@ -55,11 +55,11 @@
       <ion-card>
         <div>
           <ion-buttons>
-            <ion-button [routerLink]="['/products-form/edit', p.id]">
-              <ion-icon name="pencil-outline" color="warning"></ion-icon>
+            <ion-button [routerLink]="['/products-form/edit', p.id]" class="button-edit">
+              <ion-icon name="pencil-outline"></ion-icon>
             </ion-button>
-            <ion-button (click)="openQuantities(p.id)">
-              <ion-icon name="add-outline" color="success"></ion-icon>
+            <ion-button (click)="openQuantities(p.id)" class="button-add">
+              <ion-icon name="add-outline" ></ion-icon>
             </ion-button>
           </ion-buttons>
         </div>

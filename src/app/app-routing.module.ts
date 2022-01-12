@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'accounting',
     loadChildren: () => import('./pages/accounting/accounting.module').then( m => m.AccountingPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({

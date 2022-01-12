@@ -1,4 +1,11 @@
-<ion-header>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end" (click)="logoutUser()">
+      <ion-button>
+        <ion-icon name="close-outline" size="large" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>

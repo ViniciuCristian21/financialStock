@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
   hasAdmin: boolean;
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
+  }
+
+  async logoutUser() {
+    await this.loginService.logout();
   }
 
 }
