@@ -9,9 +9,9 @@
 </ion-header>
 
 <ion-content>
- <h1 class="ion-text-center">Bem vindo</h1>
 
- <ion-item>
+ <h1 class="ion-text-center">Bem vindo</h1>
+ <ion-item [disabled]="userLocal.state">
    <ion-label position="stacked">
      Email
    </ion-label>
@@ -25,4 +25,10 @@
    <ion-input name="password" type="password" [(ngModel)]="login.password"></ion-input>
  </ion-item>
  <ion-button expand="block" (click)="loginUser()">Entrar</ion-button>
+ <ion-item lines="none">
+  <ion-label>
+    <h6>Manter email salvo</h6>
+  </ion-label>
+  <ion-toggle color="primary" [(ngModel)]="userLocal.state"></ion-toggle>
+</ion-item>
 </ion-content>

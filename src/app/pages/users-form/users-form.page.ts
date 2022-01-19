@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login.service';
 import { Users } from './../../entities/users';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +12,8 @@ export class UsersFormPage implements OnInit {
   title: string = '';
   uId: string = '';
   users: Users;
-  constructor(private activatedRoute: ActivatedRoute,) {}
+  constructor(private activatedRoute: ActivatedRoute,
+              private loginService: LoginService) {}
 
   ngOnInit() {
     this.uId = this.activatedRoute.snapshot.params['id'];
@@ -38,10 +40,10 @@ export class UsersFormPage implements OnInit {
       }
     }else{
       try {
-        // Insert user
+        this.loginService.registerUser(this.users)
         console.log('Insert')
       } catch (err) {
-        console.log(err)
+        console.log(err.message)
       }
     }
   }

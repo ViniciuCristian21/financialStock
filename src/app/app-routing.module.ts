@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -8,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'products-form/edit/:id',
-    loadChildren: () => import('./pages/products-form/products-form.module').then( m => m.ProductsFormPageModule)
+    loadChildren: () => import('./pages/products-form/products-form.module').then( m => m.ProductsFormPageModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: 'products-form/new',
@@ -41,7 +43,8 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule)
+    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: 'users-form',
