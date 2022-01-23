@@ -25,7 +25,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <!-- Adicionar novo Produto -->
-  <ion-button expand="full" [routerLink]="['/products-form/new']">Adicionar Novo</ion-button>
+  <ion-button expand="full" [routerLink]="['/products-form/new']" color="light-blue">Adicionar Novo</ion-button>
   <div *ngIf="isSearch === false">
     <ion-list *ngFor="let p of products">
       <ion-card>
