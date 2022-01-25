@@ -5,6 +5,7 @@ import { Login } from './../../entities/login';
 import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from 'src/app/entities/localStorage';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +16,12 @@ export class LoginPage implements OnInit {
   login: Login;
   userLocal: LocalStorage = new LocalStorage();
   listLocal: LocalStorage[] = [];
+  load: any;
   constructor(private loginService: LoginService,
               private exitAppService: ExitAppService,
               private localStorageService: LocalStorageService,
-              private router: Router) { }
+              private router: Router,
+              private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.login = new Login();
@@ -26,10 +29,20 @@ export class LoginPage implements OnInit {
 
 
   async loginUser() {
-    await this.loginService.login(this.login);
+    await this.presentLoading();
+    try {
+      await this.loginService.login(this.login);
+      this.save();
+    } catch (err) {
+      console.log(err.message)
+    }finally {
+      this.load.dismiss();
+    }
+  }
 
-    // console.log(this.login)
-    this.save();
+  async presentLoading(){
+    this.load = await this.loadingCtrl.create({ message: 'Aguarde...'});
+    return this.load.present();
   }
 
   exitApp() {
