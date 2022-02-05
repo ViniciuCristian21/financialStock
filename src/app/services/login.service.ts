@@ -3,7 +3,7 @@ import { ToastGlobalService } from './toast-global.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Login } from '../entities/login';
-import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from 'src/environments/environment';
 import { collection, setDoc, doc } from '@firebase/firestore';
 @Injectable({

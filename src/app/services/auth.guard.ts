@@ -1,31 +1,35 @@
-import { LoginService } from './login.service';
+import { LocalStorageService } from './local-storage.service';
+import { ToastGlobalService } from 'src/app/services/toast-global.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { collection, query, where, getDocs } from '@firebase/firestore';
-import { db } from 'src/environments/environment';
-
+import { CanActivate, Router } from '@angular/router';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  userCollectionRef = collection(db, "users");
-  getUserId: any[] = [];
-
-  constructor(private loginService: LoginService,
-              private router: Router) {}
+  user: any;
+  constructor( private router: Router,
+              private toastService: ToastGlobalService,
+              private localStorageService: LocalStorageService) {}
   async canActivate(){
 
-    const result = query(this.userCollectionRef, where("cargo", "==", "admin"));
-    const snap = await getDocs(result);
-    const id = this.loginService.uId;
-    const d = snap.docs.filter(doc => doc.id === id && doc.data().cargo === "admin")
+    onAuthStateChanged(auth, (currentUser) => {
 
-    if (d.length === 0) {
+      try {
+        this.user = currentUser.email;
+      } catch (err) {
+        console.log(err.message)
+      }
 
-      return false
+    })
+
+    if (this.user) {
+      return true
     }
 
-    return true
+    this.router.navigate(['/login/'])
+    this.toastService.presentToast("danger", "Usuario Não Authenticado")
+    return false
   }
 }
