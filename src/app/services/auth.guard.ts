@@ -9,27 +9,37 @@ import { auth } from 'src/environments/environment';
 })
 export class AuthGuard implements CanActivate {
   user: any;
+  option: boolean;
   constructor( private router: Router,
               private toastService: ToastGlobalService,
-              private localStorageService: LocalStorageService) {}
+              private localStorageService: LocalStorageService) {
+              }
   async canActivate(){
 
-    onAuthStateChanged(auth, (currentUser) => {
+    // if (this.user) {
+    //   return true
+    // }
 
-      try {
-        this.user = currentUser.email;
-      } catch (err) {
-        console.log(err.message)
-      }
-
-    })
-
-    if (this.user) {
-      return true
-    }
-
-    this.router.navigate(['/login/'])
-    this.toastService.presentToast("danger", "Usuario Não Authenticado")
-    return false
+    // this.router.navigate(['/login/'])
+    // this.toastService.presentToast("danger", "Usuario Não Authenticado")
+    return true
   }
+
+  // verifyUser() {
+  //   onAuthStateChanged(auth, (currentUser) => {
+
+  //     try {
+  //       this.user = currentUser.email;
+  //     } catch (err) {
+  //       console.log(err.message)
+  //     }
+
+  //   })
+
+  //   if(this.user){
+  //     return true
+  //   }
+
+  //   return false
+  // }
 }
