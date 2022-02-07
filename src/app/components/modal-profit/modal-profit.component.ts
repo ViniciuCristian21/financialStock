@@ -65,9 +65,10 @@ export class ModalProfitComponent implements OnInit {
   filterProfitDay() {
     const newDate = new Date()
     const day = newDate.getDate()
+    const month = newDate.getMonth() + 1;
 
 
-    const result = this.defaultProfit.filter(doc => doc.no_format_date.toDate().getDate() === day);
+    const result = this.defaultProfit.filter(doc => doc.no_format_date.toDate().getDate() === day && doc.no_format_date.toDate().getMonth() + 1 === month);
 
     result.forEach(data => {
       let total = data.unitary_value * data.quantitie_sale;
